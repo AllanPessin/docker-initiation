@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: npm run dev
+    volumes:
+      - .:/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRESS_USER: dba_user
+      POSTGRESS_PASSWORD: arw31084
+      POSTGRESS_DB: nlw_node
+    volumes:
+    - postgres_data:/var/lib/postgressql/data
+
+  redis:
+    image: redis:latest
+    restart: always
+
+volumes:
+  postgres_data:

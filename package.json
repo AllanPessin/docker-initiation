@@ -1,0 +1,11 @@
+{
+  "name": "nlw_node",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
