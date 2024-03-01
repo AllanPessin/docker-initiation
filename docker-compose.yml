@@ -5,22 +5,27 @@ services:
     build: .
     command: npm run dev
     volumes:
-      - .:/src
+      - .:/usr/app
     ports:
       - "3000:3000"
     depends_on:
-      - db
-      - redis
+      - postgres
 
-  db:
+  postgres:
     image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+
     volumes:
-    - postgres_data:/var/lib/postgressql/data
+      - postgres_data:/var/lib/postgressql/data
+    env_file:
+      - .env
+
 
   redis:
     image: redis:latest
